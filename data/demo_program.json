@@ -1,0 +1,11 @@
+{
+ "id":"demo-a", "name":"Demo Scholarship A", "fictional":true,
+ "version":"demo-1", "rules_complete":true,
+ "source":"Fictional development fixture, not a PGPC policy",
+ "description":"Fictional sample for testing the Python request and response flow.",
+ "requirements":null, "deadline":null, "procedure":null,
+ "rules":[
+  {"field":"year","operator":">=","threshold":2,"scale":"year_level"},
+  {"field":"grade","operator":">=","threshold":85,"scale":"percentage"}
+ ]
+}
