@@ -1,77 +1,264 @@
+"""Conversation Manager (Facade): one entry point that routes each message to the
+Intent Classifier, Info Retrieval, Expert System or OCR Service (System Design v0.3, Figure 1).
+
+v0.3: replies follow the student's language (English, or Filipino for Filipino/Taglish),
+greetings/thanks/goodbyes are handled by rules, and benefit amounts are not given
+(out of scope in SRS v1.0).
+"""
 import re
-from .composer import reply
-from .expert import evaluate
-TOPICS=['availability','requirements','eligibility','deadline','application procedure','general info']
+
+from . import composer
+from .composer import TOPICS, reply
+from .expert import evaluate, fields_to_ask, fixed_rule_failures
+from .facts import FACTS, FactError, parse_fact
+from .language import reply_language
+from .messages import t
+from .smalltalk import asks_amount, asks_unsupported, classify
+
+INFO_INTENTS = {'requirements', 'deadline', 'application_procedure', 'general_info'}
+SWITCH_CONFIDENCE = 0.70  # how sure the model must be to leave a pending question
+CONSENT_WORDS = {'i agree', 'agree', 'yes', 'oo', 'opo', 'sige', 'pumapayag ako', 'payag', 'okay', 'ok'}
+
+
 def fresh_state():
-    return {'program_id':None,'pending':None,'facts':{},'confirmed':False,'last_result':None}
+    return {'program_id': None, 'pending': None, 'queue': [], 'facts': {}, 'confirmed': False,
+            'consent': False, 'last_result': None, 'awaiting_program_for': None, 'ocr_candidates': None,
+            'lang': 'en'}
+
+
 class ConversationManager:
-    def __init__(self, knowledge, classifier, demo):
-        self.kb, self.classifier, self.demo = knowledge, classifier, demo
-    def handle(self, state, message):
-        t=message.strip().lower()
-        if t=='demo':
-            state.update(fresh_state());state['program_id']='demo-a'
-            return reply('FICTIONAL DEMO selected. These are not PGPC policies. Try eligibility or view the sample information.', TOPICS)
-        if t=='cancel':
-            state['pending']=None;state['facts']={};state['confirmed']=False;state['last_result']=None
-            return reply('Check cancelled. Temporary answers cleared.', TOPICS)
-        if t=='confirm' and state['pending']=='review':
-            state['confirmed']=True;state['pending']=None
-            result=evaluate(self.demo,state['facts'],confirmed=True);state['last_result']=result
-            lines=['FICTIONAL DEMO — preliminary result: '+result['overall']]
-            lines += [f'{c["field"]}: {c["status"]}. {c["reason"]}' for c in result['criteria']]
-            lines.append('This is not scholarship approval. Final decisions belong to the scholarship office.')
-            return reply('\n'.join(lines), ['eligibility','requirements'], result=result, source=self.demo['source'])
-        if t in {'why','bakit','explain'} and state['last_result']:
-            r=state['last_result']
-            return reply('FICTIONAL DEMO: '+ '\n'.join(c['field']+': '+c['reason'] for c in r['criteria'])+
-                         '\nOnly these two fictional criteria were checked.',TOPICS)
-        # Location is context, not proof that a request is out of domain.
-        if re.search(r'\blipa\b',t):
-            return reply('Do you mean a PGPC student living in Lipa, or a scholarship administered by Lipa City? Please clarify. Residency alone does not determine eligibility.', ['pgpc residency','external scholarship'])
-        if t=='pgpc residency':
-            return reply('That is relevant to PGPC guidance, but no verified residency policy is loaded. Please consult the scholarship office.',TOPICS)
-        if t=='external scholarship':
-            return reply('I cannot provide verified details for that external program. Please contact its administering office.',TOPICS)
-        intent=self.classifier.predict(message)
-        if intent:
-            # Clear pending assessment when explicitly switching topics; do not parse it as a fact.
-            if intent!='eligibility':
-                state['pending']=None
-            if intent=='greeting':
-                return reply('Hello! This is the first Flask milestone. Choose a topic, or type demo for the fictional eligibility test.',TOPICS+['demo'])
-            if intent=='availability':
-                programs=self.kb.verified_programs()
-                return reply('Verified programs: '+', '.join(p['name'] for p in programs) if programs else
-                             'No verified scholarship programs have been loaded yet. Contact the scholarship office. You may try the separately labeled fictional demo.', ['demo']+TOPICS)
-            program=self.demo if state['program_id']=='demo-a' else self.kb.get(state['program_id'])
-            if not program:
-                return reply('No verified scholarship has been selected or loaded. Real policy answers are unavailable. Type demo only if you want to try fictional test rules.', ['availability','demo'])
-            if intent=='eligibility':
-                if program['id']!='demo-a':
-                    return reply('The manual collection flow for this program has not been configured yet.',TOPICS)
-                state['facts']={};state['confirmed']=False;state['last_result']=None;state['pending']='year'
-                return reply('FICTIONAL DEMO: What is your year level? Enter 1–9, for example 3. Use invented answers.', ['unknown','cancel'])
-            info=self.kb.retrieve(program,intent)
-            if info:
-                return reply(info['answer'],TOPICS, source=info['source'], version=info['version'])
-            return reply('No verified '+intent.replace('_',' ')+' information is available for this selection. Ask the scholarship office. I will not invent it.',TOPICS)
-        if state['pending'] in {'year','grade'}:
-            field=state['pending'];value=None
-            if t not in {'unknown',"i’m not sure","i'm not sure"}:
-                pattern=r'[1-9]' if field=='year' else r'(?:[0-9]{1,3})(?:\.[0-9]+)?%?'
-                if not re.fullmatch(pattern,t):
-                    return reply('Please enter '+('a year level 1–9.' if field=='year' else 'a percentage grade 0–100, such as 88. Do not convert another grade scale yourself.'),['unknown','cancel'])
-                value=float(t.rstrip('%'))
-                if field=='grade' and not 0<=value<=100:
-                    return reply('Percentage must be from 0 to 100.', ['unknown','cancel'])
-            if value is not None:
-                state['facts'][field]={'value':value,'scale':'year_level' if field=='year' else 'percentage'}
-            state['pending']='grade' if field=='year' else 'review'
-            if field=='year':
-                return reply('What is your average on a 0–100 percentage scale? If you have a different scale, choose unknown.', ['unknown','cancel'])
-            lines=[k+': '+str(state['facts'].get(k,{}).get('value','Not provided')) for k in ['year','grade']]
-            return reply('Review your fictional answers:\n'+'\n'.join(lines)+'\nGrade uses the percentage scale. Confirm before evaluation.', ['confirm','eligibility','cancel'])
-        if state['pending']=='review':
-            return reply('Please confirm, restart eligibility to change answers, or cancel.', ['confirm','eligibility','cancel'])
-        return reply('I cannot reliably understand this phrasing yet: the group-trained intent model is not installed. Choose a topic below. Unknown requests are not automatically treated as out of scope.',TOPICS)
+    def __init__(self, knowledge, classifier, language=None):
+        self.kb, self.classifier, self.language = knowledge, classifier, language
+
+    # ---------- helpers ----------
+    def _program(self, state):
+        return self.kb.get(state['program_id']) if state['program_id'] else None
+
+    def _program_options(self):
+        names = [p['name'] for p in self.kb.applicable_programs()]
+        return names or ['availability']
+
+    def _reset_check(self, state):
+        state.update(pending=None, queue=[], facts={}, confirmed=False, last_result=None)
+
+    def _set_language(self, state, text, preference):
+        """'en'/'fil' from the UI toggle wins; 'auto' follows the student's message."""
+        if preference in ('en', 'fil'):
+            state['lang'] = preference
+        elif self.language is not None:
+            detected = reply_language(self.language.detect(text))
+            if detected:
+                state['lang'] = detected
+
+    # ---------- main entry ----------
+    def handle(self, state, message, preference='auto'):
+        state.setdefault('lang', 'en')
+        text = message.strip()
+        self._set_language(state, text, preference)
+        lang = state['lang']
+        t_lower = text.lower()
+
+        if t_lower == 'demo':
+            state.update(fresh_state(), program_id=self.kb.demo['id'], lang=lang)
+            return reply(t('demo_selected', lang), ['eligibility', 'requirements'])
+        if t_lower == 'cancel':
+            self._reset_check(state)
+            return reply(t('cancelled', lang), TOPICS)
+        if t_lower in {'why', 'bakit', 'explain'} and state['last_result']:
+            return composer.explanation(state['last_result'], lang)
+
+        # Greetings, thanks and goodbyes (rules, not an intent). Not while an answer is pending.
+        if state['pending'] is None:
+            kind, rest = classify(text)
+            if kind in ('thanks', 'bye'):
+                return reply(t(kind, lang), TOPICS)
+            if kind == 'greeting':
+                if not rest:
+                    return reply(t('greeting', lang), TOPICS)
+                text, t_lower = rest, rest.lower()  # "Hi po, ano requirements?" -> the question
+
+        # A program named in the message becomes the selected program, except while an answer
+        # is pending (e.g., typing "San Juan" as a residency answer must not switch programs).
+        named = None if state['pending'] in FACTS else self.kb.find_in_text(text)
+        if named:
+            state['program_id'] = named['id']
+
+        if state['pending'] == 'consent':
+            return self._handle_consent(state, t_lower)
+        if state['pending'] == 'ocr_confirm':
+            return self._handle_ocr_confirm(state, t_lower)
+        if t_lower == 'upload grade report':
+            return reply(t('upload_use_button', lang), ['upload grade report', 'unknown', 'cancel'])
+        if state['pending'] == 'review':
+            if t_lower == 'confirm':
+                return self._evaluate(state)
+            if t_lower not in {'eligibility'}:
+                return reply(t('review_prompt', lang), ['confirm', 'eligibility', 'cancel'])
+
+        intent, confidence = self.classifier.predict(text)
+
+        # Benefit amounts are out of scope (SRS v1.0), so ASKOLAR never states them.
+        # "Magkano ang tuition fee?" is not about a scholarship, so it gets the out-of-scope reply.
+        if state['pending'] not in FACTS and intent != 'out_of_scope' and asks_amount(text):
+            return reply(t('amounts', lang), TOPICS)
+        # Renewals, application status and payout schedules are referred to the office (rule, not an intent).
+        if state['pending'] not in FACTS and asks_unsupported(text):
+            return self._unsupported(state, named)
+
+        # Location is context, not proof that a request is out of scope (System Design v0.3).
+        if re.search(r'\blipa\b', t_lower) and not named and intent != 'out_of_scope' and state['pending'] not in FACTS:
+            return reply(t('lipa_clarify', lang), ['pgpc residency', 'external scholarship'])
+        if t_lower == 'pgpc residency':
+            return reply(t('pgpc_residency', lang), TOPICS)
+        if t_lower == 'external scholarship':
+            return reply(t('external', lang), TOPICS)
+
+        if state['pending'] in FACTS:
+            leaving = intent and intent != 'eligibility' and confidence >= SWITCH_CONFIDENCE and not re.search(r'\d', t_lower)
+            if not leaving:
+                return self._handle_fact(state, text)
+            self._reset_check(state)
+
+        if state['awaiting_program_for'] and named:
+            intent = state['awaiting_program_for']
+            state['awaiting_program_for'] = None
+
+        if intent is None:
+            if named:
+                intent = 'general_info'
+            else:
+                return reply(t('not_understood', lang), TOPICS)
+        if intent == 'out_of_scope':
+            return reply(t('out_of_scope', lang), TOPICS)
+        if intent == 'availability':
+            return self._availability(lang)
+        if intent == 'eligibility':
+            return self._start_eligibility(state)
+        if intent in INFO_INTENTS:
+            return self._info(state, intent)
+        return reply(t('not_understood', lang), TOPICS)
+
+    def _unsupported(self, state, named):
+        lang = state['lang']
+        text = t('unsupported', lang)
+        program = named or self._program(state)
+        office = (program or {}).get('office') or {}
+        details = '; '.join(v for v in [office.get('address'), office.get('hours'), office.get('contact')] if v)
+        if program and details and not program.get('fictional'):
+            text += '\n' + t('office_line', lang, name=program['name'], office=details)
+        return reply(text, TOPICS, source=composer.source_line(program, lang) if program else None)
+
+    # ---------- intents ----------
+    def _availability(self, lang):
+        open_programs = self.kb.applicable_programs()
+        others = [p for p in self.kb.verified_programs() if p not in open_programs]
+        return composer.availability(open_programs, others, lang)
+
+    def _need_program(self, state, intent):
+        programs = self.kb.applicable_programs()
+        if len(programs) == 1:
+            state['program_id'] = programs[0]['id']
+            return None
+        state['awaiting_program_for'] = intent
+        if not programs:
+            return reply(t('need_program_none', state['lang']), ['availability', 'demo'])
+        return reply(t('which_program', state['lang']), self._program_options())
+
+    def _info(self, state, intent):
+        program = self._program(state)
+        if not program:
+            asked = self._need_program(state, intent)
+            if asked:
+                return asked
+            program = self._program(state)
+        return composer.info(program, self.kb.retrieve(program, intent), intent, state['lang'])
+
+    def _start_eligibility(self, state):
+        lang = state['lang']
+        program = self._program(state)
+        if not program:
+            asked = self._need_program(state, 'eligibility')
+            if asked:
+                return asked
+            program = self._program(state)
+        self._reset_check(state)
+        # Rules every PGPC student fails are explained right away, without asking personal facts.
+        failures = fixed_rule_failures(program)
+        if failures:
+            result = {'overall': 'LISTED_CRITERIA_NOT_MET', 'criteria': failures, 'rule_version': program.get('version')}
+            state['last_result'] = result
+            return composer.result(program, result, lang, ['availability'] + TOPICS[1:])
+        if not program.get('rules_complete') or not program.get('rules'):
+            return composer.insufficient_policy(program, lang)
+        state['queue'] = fields_to_ask(program)
+        if not state['consent']:
+            state['pending'] = 'consent'
+            return reply(t('privacy_notice', lang), ['I agree', 'cancel'])
+        return self._next_question(state)
+
+    def _handle_consent(self, state, t_lower):
+        if t_lower in CONSENT_WORDS:
+            state['consent'] = True
+            return self._next_question(state)
+        self._reset_check(state)
+        return reply(t('consent_declined', state['lang']), TOPICS)
+
+    def _next_question(self, state):
+        program = self._program(state)
+        if state['queue']:
+            state['pending'] = state['queue'][0]
+            return composer.fact_question_reply(program, state['pending'], state['lang'])
+        state['pending'] = 'review'
+        return composer.review(program, state['facts'], state['lang'])
+
+    # ---------- OCR (FR-13, FR-14) ----------
+    @staticmethod
+    def ocr_allowed(state):
+        return state['consent'] and state['pending'] in FACTS
+
+    def handle_ocr(self, state, fields):
+        needed = {}
+        for field, value in fields.items():
+            if field in state['queue'] and field in composer.OCR_FIELDS:
+                try:  # OCR values must pass the same checks as typed answers
+                    needed[field] = parse_fact(field, str(value))['value']
+                except FactError:
+                    continue
+        if not needed:
+            return composer.ocr_nothing_found(state['pending'], state['lang'])
+        state['ocr_candidates'] = needed
+        state['pending'] = 'ocr_confirm'
+        return composer.ocr_candidates(needed, state['lang'])
+
+    def ocr_failed(self, state, message):
+        return composer.ocr_failed(message, state['pending'], state.get('lang', 'en'))
+
+    def _handle_ocr_confirm(self, state, t_lower):
+        candidates = state['ocr_candidates'] or {}
+        state['ocr_candidates'] = None
+        if t_lower in {'use these values', 'yes', 'confirm', 'oo', 'opo'}:
+            for field, value in candidates.items():
+                state['facts'][field] = {'value': value, 'scale': FACTS[field]['scale'], 'from_document': True}
+                state['queue'].remove(field)
+            return self._next_question(state)
+        if t_lower == 'cancel':
+            self._reset_check(state)
+            return reply(t('cancelled', state['lang']), TOPICS)
+        return self._next_question(state)  # "type manually": ask the questions as usual
+
+    def _handle_fact(self, state, text):
+        field = state['pending']
+        try:
+            state['facts'][field] = parse_fact(field, text)
+        except FactError as error:
+            return reply(t(error.key, state['lang']) + t('or_unknown', state['lang']), ['unknown', 'cancel'])
+        state['queue'].pop(0)
+        return self._next_question(state)
+
+    def _evaluate(self, state):
+        program = self._program(state)
+        state['confirmed'] = True
+        state['pending'] = None
+        result = evaluate(program, state['facts'], confirmed=True)
+        state['last_result'] = result
+        return composer.result(program, result, state['lang'])

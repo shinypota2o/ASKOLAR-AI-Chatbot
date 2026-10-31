@@ -1,0 +1,205 @@
+question_id,text,label,language,contributor,review_status,paraphrase_group
+Q0001,Ano ang mga kailangang ipasa para sa scholarship na ito?,requirements,Filipino,Marian Kate Rapio,Approved,RQ-01
+Q0002,What are the qualifications for this scholarship?,eligibility,English,Marian Kate Rapio,Edited,EL-07
+Q0003,Paano po ang application process for this scholarship?,application_procedure,Taglish,Marian Kate Rapio,Approved,AP-03
+Q0004,What scholarships can I apply for as a college student?,availability,English,Angel Rein Ramos,Approved,AV-01
+Q0005,What do I need to qualify for a scholarship?,eligibility,English,Angel Rein Ramos,Approved,EL-01
+Q0006,How can I know if I qualify for a scholarship based on my grades and family income?,eligibility,English,Angel Rein Ramos,Approved,EL-02
+Q0007,When is the deadline for submitting my scholarship application?,deadline,English,Angel Rein Ramos,Approved,DL-01
+Q0008,How do I apply for a government scholarship?,application_procedure,English,Angel Rein Ramos,Approved,AP-01
+Q0009,What documents should I prepare before applying for a scholarship?,requirements,English,Angel Rein Ramos,Approved,RQ-01
+Q0010,Where can I find reliable information about scholarships and make sure the details are correct?,general_info,English,Angel Rein Ramos,Removed,GI-01
+Q0011,What scholarships are open right now?,availability,English,AI-assisted draft,Approved,AV-02
+Q0012,Are there scholarships for BSCS students?,availability,English,AI-assisted draft,Edited,AV-03
+Q0013,List all the scholarships offered at PGPC.,availability,English,AI-assisted draft,Approved,AV-04
+Q0014,Is there an academic scholarship this semester?,availability,English,AI-assisted draft,Approved,AV-05
+Q0015,Are there any new scholarships this school year?,availability,English,AI-assisted draft,Approved,AV-06
+Q0016,Anong mga scholarship ang mayroon sa PGPC?,availability,Filipino,AI-assisted draft,Approved,AV-04
+Q0017,May bukas bang scholarship ngayong semestre?,availability,Filipino,AI-assisted draft,Approved,AV-02
+Q0018,Ilan ang scholarship na pwedeng applyan?,availability,Filipino,AI-assisted draft,Approved,AV-07
+Q0019,May scholarship ba para sa mga working student?,availability,Filipino,AI-assisted draft,Approved,AV-08
+Q0020,Mayroon bang scholarship mula sa gobyerno dito?,availability,Filipino,AI-assisted draft,Approved,AV-09
+Q0021,Ano yung mga available na scholarship ngayon?,availability,Taglish,AI-assisted draft,Approved,AV-02
+Q0022,May open ba na scholarship this sem?,availability,Taglish,AI-assisted draft,Approved,AV-05
+Q0023,Meron bang scholarship for BSMA students?,availability,Taglish,AI-assisted draft,Edited,AV-03
+Q0024,Pa-list naman ng lahat ng scholarships.,availability,Taglish,AI-assisted draft,Approved,AV-04
+Q0025,May bagong scholarship ba this school year?,availability,Taglish,AI-assisted draft,Approved,AV-06
+Q0026,What documents do I need to submit?,requirements,English,AI-assisted draft,Approved,RQ-01
+Q0027,Do I need a certificate of indigency?,requirements,English,AI-assisted draft,Approved,RQ-02
+Q0028,Is a certificate of grades required?,requirements,English,AI-assisted draft,Approved,RQ-03
+Q0029,What are the requirements for the academic scholarship?,requirements,English,AI-assisted draft,Approved,RQ-04
+Q0030,Do I need to submit my parents' income tax return?,requirements,English,AI-assisted draft,Approved,RQ-05
+Q0031,Ano ang mga kailangang dokumento?,requirements,Filipino,AI-assisted draft,Approved,RQ-01
+Q0032,Kailangan ba ng barangay clearance?,requirements,Filipino,AI-assisted draft,Approved,RQ-06
+Q0033,Anong mga papeles ang dapat kong ihanda?,requirements,Filipino,AI-assisted draft,Approved,RQ-01
+Q0034,Kailangan ko bang magpasa ng litrato?,requirements,Filipino,AI-assisted draft,Approved,RQ-07
+Q0035,Ilang kopya ng grades ang kailangan?,requirements,Filipino,AI-assisted draft,Approved,RQ-03
+Q0036,Ano yung requirements para sa scholarship?,requirements,Taglish,AI-assisted draft,Approved,RQ-04
+Q0037,Need ba ng ITR ng parents?,requirements,Taglish,AI-assisted draft,Approved,RQ-05
+Q0038,Kailangan ba ng certificate of enrollment?,requirements,Taglish,AI-assisted draft,Approved,RQ-08
+Q0039,Ano po ang mga docs na ipapasa?,requirements,Taglish,AI-assisted draft,Approved,RQ-01
+Q0040,Required ba yung good moral certificate?,requirements,Taglish,AI-assisted draft,Approved,RQ-09
+Q0041,Can I apply if my GWA is 2.25?,eligibility,English,AI-assisted draft,Approved,EL-03
+Q0042,"Am I qualified if our family income is below 250,000 a year?",eligibility,English,AI-assisted draft,Approved,EL-04
+Q0043,Can first-year students apply for a scholarship?,eligibility,English,AI-assisted draft,Approved,EL-05
+Q0044,Do irregular students qualify for scholarships?,eligibility,English,AI-assisted draft,Approved,EL-06
+Q0045,Is there a minimum grade to qualify?,eligibility,English,AI-assisted draft,Approved,EL-07
+Q0046,Pwede ba akong mag-apply kung may bagsak akong subject?,eligibility,Filipino,AI-assisted draft,Approved,EL-08
+Q0047,Kwalipikado ba ako kung 1.75 ang GWA ko?,eligibility,Filipino,AI-assisted draft,Approved,EL-03
+Q0048,Ano ang mga kwalipikasyon para makakuha ng scholarship?,eligibility,Filipino,AI-assisted draft,Approved,EL-01
+Q0049,Pasok ba ako kung mababa ang kita ng pamilya namin?,eligibility,Filipino,AI-assisted draft,Approved,EL-04
+Q0050,Kailangan bang residente ng Lipa para makapag-apply?,eligibility,Filipino,AI-assisted draft,Approved,EL-09
+Q0051,Qualified ba ako kung 2.0 yung GWA ko?,eligibility,Taglish,AI-assisted draft,Approved,EL-03
+Q0052,Pwede ba mag-apply kahit second year na ako?,eligibility,Taglish,AI-assisted draft,Approved,EL-05
+Q0053,May income requirement ba para ma-qualify?,eligibility,Taglish,AI-assisted draft,Edited,EL-04
+Q0054,Eligible ba ako kung transferee ako?,eligibility,Taglish,AI-assisted draft,Approved,EL-10
+Q0055,Pa-check naman kung pasok ako sa scholarship.,eligibility,Taglish,AI-assisted draft,Approved,EL-02
+Q0056,When is the deadline for applications?,deadline,English,AI-assisted draft,Approved,DL-01
+Q0057,Until when can I submit my requirements?,deadline,English,AI-assisted draft,Approved,DL-02
+Q0058,Is the application still open?,deadline,English,AI-assisted draft,Approved,DL-03
+Q0059,When does the scholarship application close?,deadline,English,AI-assisted draft,Approved,DL-01
+Q0060,Can I still submit after the deadline?,deadline,English,AI-assisted draft,Approved,DL-04
+Q0061,Kailan ang huling araw ng pagpasa?,deadline,Filipino,AI-assisted draft,Approved,DL-02
+Q0062,Hanggang kailan pwedeng mag-apply?,deadline,Filipino,AI-assisted draft,Approved,DL-01
+Q0063,Bukas pa ba ang aplikasyon?,deadline,Filipino,AI-assisted draft,Approved,DL-03
+Q0064,Kailan magsasara ang aplikasyon?,deadline,Filipino,AI-assisted draft,Approved,DL-01
+Q0065,Anong petsa ang deadline ng requirements?,deadline,Filipino,AI-assisted draft,Approved,DL-02
+Q0066,Kailan yung deadline ng application?,deadline,Taglish,AI-assisted draft,Approved,DL-01
+Q0067,Hanggang kailan pwede mag-submit?,deadline,Taglish,AI-assisted draft,Approved,DL-02
+Q0068,Open pa ba yung application?,deadline,Taglish,AI-assisted draft,Approved,DL-03
+Q0069,May extension ba yung deadline?,deadline,Taglish,AI-assisted draft,Approved,DL-04
+Q0070,Kelan last day ng pasahan?,deadline,Taglish,AI-assisted draft,Approved,DL-02
+Q0071,How do I apply for a scholarship?,application_procedure,English,AI-assisted draft,Approved,AP-01
+Q0072,Where do I submit my application?,application_procedure,English,AI-assisted draft,Approved,AP-02
+Q0073,What are the steps to apply?,application_procedure,English,AI-assisted draft,Approved,AP-03
+Q0074,Can I apply online?,application_procedure,English,AI-assisted draft,Approved,AP-04
+Q0075,Who should I talk to about applying?,application_procedure,English,AI-assisted draft,Approved,AP-05
+Q0076,Paano mag-apply ng scholarship?,application_procedure,Filipino,AI-assisted draft,Approved,AP-01
+Q0077,Saan ko ipapasa ang mga requirements?,application_procedure,Filipino,AI-assisted draft,Approved,AP-02
+Q0078,Ano ang mga hakbang sa pag-apply?,application_procedure,Filipino,AI-assisted draft,Approved,AP-03
+Q0079,Pwede bang mag-apply online?,application_procedure,Filipino,AI-assisted draft,Approved,AP-04
+Q0080,Kanino ako dapat lumapit para mag-apply?,application_procedure,Filipino,AI-assisted draft,Approved,AP-05
+Q0081,Paano po mag-apply?,application_procedure,Taglish,AI-assisted draft,Approved,AP-01
+Q0082,Saan ipapasa yung application form?,application_procedure,Taglish,AI-assisted draft,Approved,AP-02
+Q0083,Ano yung process ng application?,application_procedure,Taglish,AI-assisted draft,Approved,AP-03
+Q0084,Online lang ba ang pasahan o kailangan pumunta sa office?,application_procedure,Taglish,AI-assisted draft,Edited,AP-04
+Q0085,Saan makukuha yung application form?,application_procedure,Taglish,AI-assisted draft,Approved,AP-06
+Q0086,What is the Bokal Vidal scholarship?,general_info,English,AI-assisted draft,Edited,GI-02
+Q0087,How much is the allowance?,general_info,English,AI-assisted draft,Approved,GI-03
+Q0088,What benefits does the scholarship give?,general_info,English,AI-assisted draft,Approved,GI-04
+Q0089,Who offers this scholarship?,general_info,English,AI-assisted draft,Approved,GI-05
+Q0090,How long does the scholarship last?,general_info,English,AI-assisted draft,Approved,GI-06
+Q0091,Ano ang Bokal Vidal scholarship?,general_info,Filipino,AI-assisted draft,Edited,GI-02
+Q0092,Magkano ang matatanggap ng scholar?,general_info,Filipino,AI-assisted draft,Approved,GI-03
+Q0093,Ano ang mga benepisyo ng scholarship?,general_info,Filipino,AI-assisted draft,Approved,GI-04
+Q0094,Sino ang nagbibigay ng scholarship na ito?,general_info,Filipino,AI-assisted draft,Approved,GI-05
+Q0095,Gaano katagal ang scholarship?,general_info,Filipino,AI-assisted draft,Approved,GI-06
+Q0096,Ano ba yung GVSR scholarship?,general_info,Taglish,AI-assisted draft,Edited,GI-02
+Q0097,Magkano yung allowance ng scholars?,general_info,Taglish,AI-assisted draft,Approved,GI-03
+Q0098,Ano mga benefits ng scholarship?,general_info,Taglish,AI-assisted draft,Approved,GI-04
+Q0099,Sino nag-o-offer ng scholarship na to?,general_info,Taglish,AI-assisted draft,Approved,GI-05
+Q0100,Covered ba ang tuition sa scholarship?,general_info,Taglish,AI-assisted draft,Approved,GI-07
+Q0101,How do I cook adobo?,out_of_scope,English,AI-assisted draft,Approved,OS-01
+Q0102,What is the weather today?,out_of_scope,English,AI-assisted draft,Approved,OS-02
+Q0103,Can you help me with my math homework?,out_of_scope,English,AI-assisted draft,Approved,OS-03
+Q0104,Who won the basketball game last night?,out_of_scope,English,AI-assisted draft,Approved,OS-04
+Q0105,Tell me a joke.,out_of_scope,English,AI-assisted draft,Approved,OS-05
+Q0106,Paano magluto ng sinigang?,out_of_scope,Filipino,AI-assisted draft,Approved,OS-01
+Q0107,Anong oras na?,out_of_scope,Filipino,AI-assisted draft,Approved,OS-06
+Q0108,Sino ang presidente ng Pilipinas?,out_of_scope,Filipino,AI-assisted draft,Approved,OS-07
+Q0109,Pwede mo ba akong tulungan sa assignment ko?,out_of_scope,Filipino,AI-assisted draft,Approved,OS-03
+Q0110,Saan masarap kumain sa Lipa?,out_of_scope,Filipino,AI-assisted draft,Approved,OS-08
+Q0111,Ano yung best phone ngayon?,out_of_scope,Taglish,AI-assisted draft,Approved,OS-09
+Q0112,Pwede mo ba i-solve yung math problem ko?,out_of_scope,Taglish,AI-assisted draft,Approved,OS-03
+Q0113,Kumusta yung weather today?,out_of_scope,Taglish,AI-assisted draft,Approved,OS-02
+Q0114,Sino nanalo sa game kagabi?,out_of_scope,Taglish,AI-assisted draft,Approved,OS-04
+Q0115,Pa-recommend naman ng magandang movie.,out_of_scope,Taglish,AI-assisted draft,Approved,OS-10
+Q0116,Need ba talagang may 3 signature specimen pa yung photocopy ng ID?,requirements,Taglish,Justine Angelo Mediavillo,Approved,RQ-10
+Q0117,"May indigency ako dito, kaso 6 months mahigit na ito sakin, pwede kayang ipasa pa ito?",requirements,Taglish,Justine Angelo Mediavillo,Approved,RQ-11
+Q0118,"Pwede kayang kahit eto na lang barangay residency na lang ipasa ko, kahit wala nang indigency, parang pareho lang naman eh?",requirements,Taglish,Justine Angelo Mediavillo,Approved,RQ-12
+Q0119,"Pede kayang photo copy na lang din ng indigency ipasa ko, para nasakin paden yung original at magagamit ko pa sa iba?",requirements,Taglish,Justine Angelo Mediavillo,Approved,RQ-13
+Q0120,"First year student here, pano kaya ang sa school id, hindi pa kase narrelease yung id namin, pede kaya ang Id ko nung senior high?",requirements,Taglish,Justine Angelo Mediavillo,Approved,RQ-14
+Q0121,Kailan ang huling araw ng pagpasa ng requirements?,deadline,Taglish,John Rayben Marquez,Approved,DL-05
+Q0122,Kailan ang huling araw ng pagsusumite ng mga kinakailangan?,deadline,Filipino,John Rayben Marquez,Approved,DL-05
+Q0123,When is the last day to submit the requirements?,deadline,English,John Rayben Marquez,Approved,DL-05
+Q0124,Hanggang kailan ako puwedeng mag-apply?,deadline,Taglish,John Rayben Marquez,Approved,DL-06
+Q0125,Hanggang kailan ako maaaring mag-aplay?,deadline,Filipino,John Rayben Marquez,Approved,DL-06
+Q0126,Until when can I apply?,deadline,English,John Rayben Marquez,Approved,DL-06
+Q0127,Kailan ang deadline ng scholarship application?,deadline,Taglish,John Rayben Marquez,Approved,DL-07
+Q0128,When is the scholarship application deadline?,deadline,English,John Rayben Marquez,Approved,DL-07
+Q0129,May extension pa ba sa pagpasa ng requirements?,deadline,Taglish,John Rayben Marquez,Approved,DL-08
+Q0130,Is there an extension for submitting the requirements?,deadline,English,John Rayben Marquez,Approved,DL-08
+Q0131,Anong petsa ang huling araw ng application?,deadline,Taglish,John Rayben Marquez,Approved,DL-09
+Q0132,Anong petsa ang huling araw ng aplikasyon?,deadline,Filipino,John Rayben Marquez,Approved,DL-09
+Q0133,What is the final date for the application?,deadline,English,John Rayben Marquez,Approved,DL-09
+Q0134,Pwede pa ba akong magpasa kahit late na?,deadline,Taglish,John Rayben Marquez,Approved,DL-10
+Q0135,Maaari pa ba akong magsumite kahit lampas na sa takdang araw?,deadline,Filipino,John Rayben Marquez,Approved,DL-10
+Q0136,Can I still submit my application even if it is late?,deadline,English,John Rayben Marquez,Approved,DL-10
+Q0137,Kailan magsasara ang online application?,deadline,Taglish,John Rayben Marquez,Approved,DL-11
+Q0138,When will the online application close?,deadline,English,John Rayben Marquez,Approved,DL-11
+Q0139,May dagdag na araw ba sa deadline ng scholarship?,deadline,Taglish,John Rayben Marquez,Approved,DL-12
+Q0140,Will there be additional days for the scholarship deadline?,deadline,English,John Rayben Marquez,Approved,DL-12
+Q0141,"Pwede po ba mag-apply kahit first year college pa lang ako, or hanggang fourth year lang po ba?",eligibility,Taglish,Angel Rein Ramos,Approved,EL-11
+Q0142,Ano po ba dapat ang minimum GWA para makapasok sa scholarship?,eligibility,Taglish,Angel Rein Ramos,Approved,EL-12
+Q0143,May chance pa rin po ba akong ma-qualify kahit 2.00 ang GWA ko?,eligibility,Taglish,Angel Rein Ramos,Approved,EL-13
+Q0144,May limit po ba sa monthly income ng family para makapag-apply?,eligibility,Taglish,Angel Rein Ramos,Approved,EL-14
+Q0145,Pwede pa rin po ba akong mag-apply kahit sa ibang barangay or municipality ako nakatira?,eligibility,Taglish,Angel Rein Ramos,Approved,EL-15
+Q0146,Okay lang po ba na number ng parents ko ang gamitin ko sa application kung wala pa akong sariling contact number?,application_procedure,Taglish,Angel Rein Ramos,Approved,AP-07
+Q0147,Tumatanggap din po ba kayo ng irregular students or transferees na gustong mag-apply?,eligibility,Taglish,Angel Rein Ramos,Approved,EL-17
+Q0148,"Kailangan po ba full load ang subjects ko this semester, or pwede pa rin kahit hindi kumpleto ang enrolled units ko?",eligibility,Taglish,Angel Rein Ramos,Approved,EL-18
+Q0149,Can I still apply if I failed one subject last semester?,eligibility,English,Angel Rein Ramos,Approved,EL-19
+Q0150,Am I eligible for the scholarship even if I am a working student?,eligibility,English,Angel Rein Ramos,Approved,EL-20
+Q0151,Can I apply even if my grades for this semester are not yet complete?,eligibility,English,Angel Rein Ramos,Approved,EL-21
+Q0152,Is there an age limit for scholarship applicants?,eligibility,English,Angel Rein Ramos,Approved,EL-22
+Q0153,Can I apply even if I am already receiving another educational assistance?,eligibility,English,Angel Rein Ramos,Approved,EL-23
+Q0154,Do both of my parents need to be employed to qualify for the scholarship?,eligibility,English,Angel Rein Ramos,Approved,EL-24
+Q0155,Can I qualify for the scholarship even if I am not an academic achiever?,eligibility,English,Angel Rein Ramos,Approved,EL-25
+Q0156,Am I still eligible if I took a semester off before returning to college?,eligibility,English,Angel Rein Ramos,Approved,EL-26
+Q0157,Kailan ang enrollment?,out_of_scope,Taglish,Rei Martin Patungan,Approved,OS-11
+Q0158,When is the enrollment period?,out_of_scope,English,Rei Martin Patungan,Approved,OS-11
+Q0159,Ano ang mga requirements para sa enrollment?,out_of_scope,Taglish,Rei Martin Patungan,Approved,OS-12
+Q0160,What are the enrollment requirements?,out_of_scope,English,Rei Martin Patungan,Approved,OS-12
+Q0161,Saan matatagpuan ang registrar's office?,out_of_scope,Taglish,Rei Martin Patungan,Approved,OS-13
+Q0162,Where is the registrar's office?,out_of_scope,English,Rei Martin Patungan,Approved,OS-13
+Q0163,Kailan magsisimula ang klase?,out_of_scope,Filipino,Rei Martin Patungan,Approved,OS-14
+Q0164,Kailan magsisimula ang mga klase?,out_of_scope,Filipino,Rei Martin Patungan,Approved,OS-14
+Q0165,When will classes start?,out_of_scope,English,Rei Martin Patungan,Approved,OS-14
+Q0166,May pasok ba bukas?,out_of_scope,Filipino,Rei Martin Patungan,Approved,OS-15
+Q0167,Are there classes tomorrow?,out_of_scope,English,Rei Martin Patungan,Approved,OS-15
+Q0168,Kailan ang next examination?,out_of_scope,Taglish,Rei Martin Patungan,Approved,OS-16
+Q0169,Kailan ang susunod na pagsusulit?,out_of_scope,Filipino,Rei Martin Patungan,Approved,OS-16
+Q0170,When is the next examination?,out_of_scope,English,Rei Martin Patungan,Approved,OS-16
+Q0171,Saan makikita ang exam schedule?,out_of_scope,Taglish,Rei Martin Patungan,Approved,OS-17
+Q0172,Where can I find the examination schedule?,out_of_scope,English,Rei Martin Patungan,Approved,OS-17
+Q0173,Pwede bang mag-retake ng exam?,out_of_scope,Taglish,Rei Martin Patungan,Approved,OS-18
+Q0174,Maaari bang kumuha muli ng pagsusulit?,out_of_scope,Filipino,Rei Martin Patungan,Approved,OS-18
+Q0175,Can I retake an examination?,out_of_scope,English,Rei Martin Patungan,Approved,OS-18
+Q0176,Sino ang school principal?,out_of_scope,Taglish,Rei Martin Patungan,Approved,OS-19
+Q0177,Sino ang punong-guro ng paaralan?,out_of_scope,Filipino,Rei Martin Patungan,Approved,OS-19
+Q0178,Who is the school principal?,out_of_scope,English,Rei Martin Patungan,Approved,OS-19
+Q0179,Saan ko makikita ang listahan ng teachers?,out_of_scope,Taglish,Rei Martin Patungan,Approved,OS-20
+Q0180,Saan makikita ang talaan ng mga guro?,out_of_scope,Filipino,Rei Martin Patungan,Approved,OS-20
+Q0181,Where can I find the list of teachers?,out_of_scope,English,Rei Martin Patungan,Approved,OS-20
+Q0182,Sino ang guidance counselor?,out_of_scope,Taglish,Rei Martin Patungan,Approved,OS-21
+Q0183,Who is the student guidance counselor?,out_of_scope,English,Rei Martin Patungan,Approved,OS-21
+Q0184,Saan matatagpuan ang faculty room?,out_of_scope,Taglish,Rei Martin Patungan,Approved,OS-22
+Q0185,Where is the teachers' room?,out_of_scope,English,Rei Martin Patungan,Approved,OS-22
+Q0186,May required uniform ba ang school?,out_of_scope,Taglish,Rei Martin Patungan,Approved,OS-23
+Q0187,Does the school have a required uniform?,out_of_scope,English,Rei Martin Patungan,Approved,OS-23
+Q0188,Magkano ang tuition fee?,out_of_scope,Taglish,Rei Martin Patungan,Approved,OS-24
+Q0189,How much is the tuition fee?,out_of_scope,English,Rei Martin Patungan,Approved,OS-24
+Q0190,Saan pwedeng kumuha ng school ID?,out_of_scope,Taglish,Rei Martin Patungan,Approved,OS-25
+Q0191,Where can I get a student ID?,out_of_scope,English,Rei Martin Patungan,Approved,OS-25
+Q0192,Kailan po nagsimula ang scholarship program na ito?,general_info,Taglish,Angel Rein Ramos,Approved,GI-08
+Q0193,Bakit po ginawa ang scholarship program na ito?,general_info,Taglish,Angel Rein Ramos,Approved,GI-09
+Q0194,May official name po ba ang scholarship program?,general_info,Taglish,Angel Rein Ramos,Approved,GI-10
+Q0195,Saang lugar or schools po available ang scholarship na ito?,general_info,Taglish,Angel Rein Ramos,Approved,GI-11
+Q0196,May partnership po ba ang scholarship program sa mga colleges or universities?,general_info,Taglish,Angel Rein Ramos,Approved,GI-12
+Q0197,Puwede po bang malaman kung magkano ang financial assistance na ibinibigay sa bawat scholar?,general_info,Taglish,Angel Rein Ramos,Approved,GI-03
+Q0198,Every semester po ba nagbibigay ng financial assistance ang scholarship?,general_info,Taglish,Angel Rein Ramos,Approved,GI-13
+Q0199,Hanggang ilang taon po puwedeng makatanggap ng scholarship benefits?,general_info,Taglish,Angel Rein Ramos,Approved,GI-06
+Q0200,May iba pa po bang educational expenses na puwedeng sagutin ng scholarship?,general_info,Taglish,Angel Rein Ramos,Approved,GI-04
+Q0201,Kasama po ba sa benefits ang allowance para sa transportation and school supplies?,general_info,Taglish,Angel Rein Ramos,Approved,GI-04
+Q0202,May orientation po ba para sa mga bagong scholars?,general_info,Taglish,Angel Rein Ramos,Approved,GI-14
+Q0203,May certificate or identification card po ba na ibinibigay sa mga qualified scholars?,general_info,Taglish,Angel Rein Ramos,Approved,GI-15
+Q0204,Saan po ako puwedeng magtanong kung may concerns or problems ako tungkol sa scholarship?,general_info,Taglish,Angel Rein Ramos,Approved,GI-16

@@ -1,72 +1,75 @@
-# ASKOLAR Flask Starter v0.1
+# ASKOLAR (Development build v0.3)
 
-First implementation milestone based on ASKOLAR_Handwritten_Ready_Timeline_Design_Gantt_v1.3.pdf, System Design v0.3, pages 2–5. Local development only. Use invented test facts.
+ASKOLAR: An Expert System-Based Scholarship Information and Guidance Chatbot for PGPC Students.
+Group 3 · CS 312 (Software Engineering I) and CSE 103 (Intelligent Systems).
 
-## What changed
-The original blue UI now sends messages to Python through Flask. Python handles conversation context, information retrieval and a fictional two-rule eligibility flow. JavaScript only handles display and requests. This is a runnable foundation, not a complete final system.
+Local Flask web app. The intent classifier, the language identifier and the expert system are trained or built by the group and run on this computer. No external AI, no online OCR and no user accounts (SRS v1.0 scope, NFR-09).
 
-## Run on Windows (Python 3.11 or 3.12 recommended for this starter)
-Extract the ZIP first. Open PowerShell in this folder (where app.py is).
+## Run on Windows
+
+Open PowerShell in this folder (where `app.py` is). Python 3.13 and Tesseract OCR (`D:\Programming\Tesseract-OCR`) must be installed.
 
 ```powershell
 py -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe training\export_from_excel.py "path\to\ASKOLAR.xlsx"
+.\.venv\Scripts\python.exe training\train_intent.py
+.\.venv\Scripts\python.exe training\train_language.py
 .\.venv\Scripts\python.exe app.py
 ```
 
-Open http://127.0.0.1:5000 in Chrome or Edge. Keep the terminal running. Ctrl+C stops it. No virtual-environment activation is needed. If `py` is unavailable, use your installed Python executable to create the environment. Dependency installation needs internet; runtime uses no online AI services.
+Open http://127.0.0.1:5000 in Chrome or Edge. Ctrl+C stops the server. Installing needs internet once; running does not.
 
-Do not double-click templates/index.html: the UI requires the Flask server now.
+**Show it on a real phone (same Wi-Fi):** run `.\.venv\Scripts\python.exe -c "from askolar import create_app; create_app().run(host='0.0.0.0', port=5000)"`, find the laptop's IPv4 address with `ipconfig`, then open `http://<that address>:5000` on the phone. Allow Python through Windows Firewall (Private network) if asked.
 
-## First trial (type each message separately)
-1. `hello`
-2. `availability` — should report no verified programs loaded.
-3. `demo` — explicitly selects a FICTIONAL development fixture.
-4. `eligibility`
-5. `3`
-6. `88`
-7. `confirm` — Python returns an explained preliminary demo result.
-8. `why`
+**Run the tests:** `.\.venv\Scripts\python.exe -m unittest discover -s tests`
 
-Try `1` and `80` for unmet criteria, or `unknown` for missing data. Try `Lipa` for clarification. New chat clears the server-side facts and visible chat. Check themes and Mobile view too.
+## Train the models (Rapio)
 
-## Architecture mapping
-- templates/index.html + static/: Web Chat UI.
-- askolar/services/conversation.py: Conversation Manager (Facade).
-- askolar/services/intent.py: classifier interface; currently explicit command matching ONLY.
-- askolar/services/knowledge.py: Info Retrieval and versioned JSON access.
-- askolar/services/expert.py: numeric rule evaluation with met/unmet/unresolved.
-- askolar/services/ocr.py: OCR Adapter interface; not implemented, returns HTTP 501.
-- askolar/services/composer.py: common response format.
-- data/knowledge_base.json: empty verified knowledge base, maintained offline.
-- data/demo_program.json: separate fictional test fixture, never an actual policy.
-- askolar/__init__.py: routes, CSRF protection and isolated temporary sessions.
+1. Review the Excel file (sheet "Training Questions"): Review status = Approved, Edited or Remove.
+2. Export: `training\export_from_excel.py "path\to\ASKOLAR.xlsx"` → `training/intent_dataset.csv`.
+3. Intent model: `training\train_intent.py --reviewed-only` (rows marked Remove are never used).
+   To test on real student questions: add `--test-contributor "Student survey"`.
+4. Language identifier: `training\train_language.py` (uses the Language column).
+5. Results: `training/results.md`, `training/results.json`, `training/language_results.md`. Copy them into the Test Plan (M-01, M-02) and the IEEE paper. Report only the final run.
+6. Models are saved to `models/` (not committed; rebuild them with the scripts). Restart `app.py` to load them.
 
-## Implemented vs pending
-Implemented: Flask-to-UI requests and responses, command-based navigation, clarification fallback, session isolation, explicit reset, expiry cleanup, manual fictional eligibility collection, confirmation, rule explanations, theme/mobile controls and automated backend tests.
+Intent model: TF-IDF (word 1–2-grams + character 2–4-grams) → Logistic Regression; 80/20 split, seed 42, paraphrase groups kept in one split; final model refit on all questions; below 0.40 confidence → clarification.
+Language identifier: TF-IDF character 2–4-grams → Logistic Regression. Messages with only English or only Filipino common words are decided by a word list; mixed messages by the model.
 
-PENDING: group-trained TF-IDF + Logistic Regression model, reviewed multilingual dataset, real coordinator-verified policies, configurable collection for real scholarship fields, OCR extraction and upload/review screens, OCR accuracy evaluation, deployment hardening, comprehensive browser/accessibility/user testing and final results.
+## Try it
 
-There is NO trained intent model in this ZIP. Natural questions outside explicit topic commands receive an honest clarification message. The interface in intent.py is where the evaluated local model will later be loaded. questions_template.csv is only a header template, not training data. Review labels, group near duplicates, and split train/test before fitting TF-IDF or Logistic Regression; do not claim dataset or model accuracy yet.
+| Type | What happens |
+|---|---|
+| `Hi po` | Greeting “Hello, iskolar!” (rule, not an intent) |
+| `Hi po, ano ang requirements ng Vidal?` | Greeting is skipped; requirements answered in Filipino with source |
+| `What scholarships are open?` | English reply: Vidal and Mendoza are open; San Juan LYDO is not open to PGPC |
+| `Mendoza` → `eligibility` → `I agree` → `Padre Garcia, Batangas` → `1.55` → `23` → `confirm` → `why` | Rule check with MET/UNMET reasons, notes and disclaimer |
+| `Magkano ang allowance?` | Benefit amounts are not given (out of scope) |
+| `Paano magluto ng adobo?` | Out-of-scope reply |
+| `taga Lipa ako` | Clarification, not rejection |
+| `demo` → `eligibility` → … | Fictional rules: year level ≥ 2 and GWA ≤ 2.25 |
+| Scholarships (sidebar) | List of verified programs from the knowledge base |
 
-The attached v1.3 architecture uses JSON knowledge records and temporary sessions. It does not specify account registration/login or an account database. Those earlier account ideas are NOT implemented here; confirm a design update before adding them. A Supabase connection is not required to try this milestone.
+## Project structure (System Design v0.3, Figure 1)
 
-## Data lifetime and limits
-Personal demo facts exist only in isolated server memory, not in the cookie. The cookie contains a random session ID. No chat-message history is persisted server-side. New chat explicitly deletes that session. Sessions expire after 30 minutes of inactivity, with cleanup at the next request or within an additional 30-second background sweep. Stopping the process clears all records. Closing the tab alone does NOT immediately notify the server. Only theme preference is stored in browser localStorage.
+| Path | Component |
+|---|---|
+| `askolar/services/conversation.py` | Conversation Manager (Facade): routing, consent, fact questions, review, language |
+| `askolar/services/intent.py` | Intent Classifier (7 intents) |
+| `askolar/services/language.py` | Language Identifier (English / Filipino / Taglish) |
+| `askolar/services/smalltalk.py` | Greeting, thanks, goodbye rules; benefit-amount check |
+| `askolar/services/knowledge.py` | Info Retrieval from the knowledge base |
+| `askolar/services/expert.py` | Expert System: IF–THEN rules, MET / UNMET / UNRESOLVED |
+| `askolar/services/facts.py` | The 5 eligibility facts and answer checking |
+| `askolar/services/ocr.py` | OCR Service (Adapter) using local Tesseract |
+| `askolar/services/composer.py` | Response Composer: builds every reply |
+| `askolar/services/messages.py` | All fixed replies in English and Filipino |
+| `data/knowledge_base.json` | Verified programs and rules (schema v2) |
+| `training/` | Dataset export and training scripts |
 
-The starter runs one local process and is not suitable for a public multi-worker deployment. It has no user authentication or verified PGPC access control. The local HTTP cookie is not marked Secure; hosted deployment requires HTTPS, secure-cookie configuration, rate limits, deployment review and appropriate session storage. No legal compliance or production security certification is claimed. No upload files are accepted or retained by the OCR placeholder. Raw grades/income must not be added to logs or Git.
+See `FILES_EXPLAINED.md` for a simple explanation of each file (for the code walkthrough).
 
-## Tests
-```powershell
-.\.venv\Scripts\python.exe -m unittest discover -s tests -v
-```
-Tests cover API validation, session isolation/reset/expiry, confirmation, boundaries, missing data, scale mismatch, scope clarification, empty knowledge/rules and unavailable OCR. These are implementation checks, not measured chatbot or OCR accuracy.
+## Privacy (RA 10173)
 
-## Next work, in small steps
-1. Run the exact demo above and check the interface locally.
-2. Have the group verify the first scholarship source and fill its policy record; review before activation.
-3. Prepare and review original Filipino/English/Taglish questions. Train and evaluate the classifier separately; integrate its saved local pipeline.
-4. Add supported OCR extraction and confirmation after agreeing the document format and dependency; measure raw field accuracy before correction.
-5. Extend tests and conduct usability/acceptance review before deployment.
-
-To edit: start with services/conversation.py for flow, services/expert.py for rule semantics and static/style.css for appearance. Every member should understand their assigned component and record contributions.
+No login. Answers stay in a temporary in-memory session and are deleted on New chat or after 30 minutes of inactivity. Uploaded images are deleted right after OCR. Do not commit student data, survey CSV files or grade report images to GitHub.

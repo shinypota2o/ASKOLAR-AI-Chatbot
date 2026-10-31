@@ -3,3 +3,63 @@
 :root[data-theme=dark]{color-scheme:dark;--navy:#e0ebfa;--muted:#a9bdd3;--line:#2a4059;--blue:#65b8f1}:root[data-theme=dark] body{background:#0e1825}:root[data-theme=dark] main{background:radial-gradient(ellipse at 55% 90%,#142b43 0,transparent 60%),#0f1b2a}:root[data-theme=dark] aside{background:linear-gradient(165deg,#132335,#112131);border-color:#24364b}:root[data-theme=dark] .brand,:root[data-theme=dark] h1{color:#deebfc}:root[data-theme=dark] .school,:root[data-theme=dark] .header-title,:root[data-theme=dark] #welcome p,:root[data-theme=dark] nav button,:root[data-theme=dark] .side-bottom{color:#a9bdd3}:root[data-theme=dark] nav button.active,:root[data-theme=dark] nav button:hover{background:#203d59;color:#b5ddff}:root[data-theme=dark] #composer,:root[data-theme=dark] .result,:root[data-theme=dark] dialog{background:#17283b;border-color:#354e68}:root[data-theme=dark] #suggestions button,:root[data-theme=dark] .actions button,:root[data-theme=dark] .header-tools button,:root[data-theme=dark] .back,:root[data-theme=dark] #jump,:root[data-theme=dark] .demo{background:#1a3046;border-color:#35516c;color:#beddf7}:root[data-theme=dark] textarea{color:#e0ebfa}:root[data-theme=dark] textarea::placeholder,:root[data-theme=dark] .compose-bottom span,:root[data-theme=dark] .footnote,:root[data-theme=dark] footer,:root[data-theme=dark] .result small{color:#9ab2ca}:root[data-theme=dark] .result strong{color:#8ac9f9}:root[data-theme=dark] .user .bubble{background:#24496c}:root[data-theme=dark] .avatar{background:#214361;color:#a8dcff}:root[data-theme=dark] .chat #composer-area{background:linear-gradient(transparent,#102035 15%)}:root[data-theme=dark] #send{background:#66b9f1;color:#102235}
 body.mobile-preview{max-width:430px;margin:12px auto;height:calc(100dvh - 24px);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 12px 60px #15365f25;position:relative}body.mobile-preview main{width:100%}body.mobile-preview aside{position:absolute;left:-265px;top:0;bottom:0;width:250px;z-index:5;padding:27px 17px}body.mobile-preview.nav-open aside{left:0}body.mobile-preview.nav-open #overlay{display:block;position:absolute;inset:0;background:#173c6540;z-index:4}body.mobile-preview #menu{display:block}body.mobile-preview header{padding:0 14px;height:65px;gap:8px}body.mobile-preview .header-title,body.mobile-preview .demo{display:none}body.mobile-preview .header-tools{margin-left:auto;gap:6px}body.mobile-preview #stage{padding:0 17px}body.mobile-preview #welcome{margin:auto 0 29px}body.mobile-preview h1{font-size:40px;letter-spacing:-1.8px}body.mobile-preview h2{font-size:20px}body.mobile-preview #welcome p{font-size:13px}body.mobile-preview .eyebrow{font-size:8px;letter-spacing:1.2px}body.mobile-preview #composer{padding:17px 15px 12px}body.mobile-preview textarea{font-size:16px}body.mobile-preview #suggestions{flex-wrap:wrap;gap:8px}body.mobile-preview #suggestions button{min-height:44px;font-size:11px}body.mobile-preview footer{padding:12px 15px}body.mobile-preview footer span:first-child,body.mobile-preview .desktop{display:none}body.mobile-preview .compose-bottom span{font-size:9px}body.mobile-preview .footnote{font-size:10px}body.mobile-preview .message{font-size:14px}.actions button{min-height:40px}#send{min-width:42px;min-height:42px}@media(max-width:650px){.header-title{display:none}.header-tools{margin-left:auto;gap:6px}.demo{display:none}#mobile-preview{display:none}textarea{font-size:16px}#suggestions button,.actions button{min-height:44px}#welcome p{font-size:13px}.footnote{font-size:10px}body.mobile-preview{margin:0;border:0;border-radius:0;max-width:none;height:100dvh}#info-view h1{font-size:30px}}
 body.mobile-preview aside{visibility:hidden}body.mobile-preview.nav-open aside{visibility:visible}@media(max-width:650px){aside{visibility:hidden}body.nav-open aside{visibility:visible}}
+
+/* ---- UI v0.3 preview: larger text, PGPC logo, icon toggles, chatbot-style start ---- */
+body{font-size:16px}
+.logo{width:44px;height:44px}
+.brand{font-size:26px}
+.school{font-size:13px;margin:10px 0 36px;color:#5f7590}
+nav button{font-size:15px;padding:13px 12px}
+nav button b{font-weight:500}
+nav button span{font-size:18px}
+.side-bottom{font-size:13px}
+.side-bottom small{font-size:12px}
+.mini-logo{width:34px;height:34px}
+header{height:72px;justify-content:flex-end}
+.header-tools{gap:12px}
+.icon{font-size:18px;min-width:42px;padding:8px!important}
+.lang{display:flex;border:1px solid #c7d9e9;border-radius:10px;overflow:hidden}
+.lang button{border:0;background:#f7fbff;color:#315e89;padding:9px 12px;font-size:13px;min-height:40px}
+.lang button[aria-pressed=true]{background:#295fab;color:#fff}
+#welcome{margin:auto 0 28px;padding-top:0}
+#welcome h2{font-size:clamp(26px,3vw,34px);font-weight:600;letter-spacing:-.6px;margin:0;color:#163a67}
+textarea{font-size:16px}
+.compose-bottom{gap:10px}
+.compose-bottom span{font-size:12px;margin-right:auto}
+#attach{border:1px solid #c7d9e9;border-radius:10px;background:#f7fbff}
+#suggestions{flex-wrap:wrap;max-width:730px}
+#suggestions button{font-size:14px;padding:10px 14px;border-radius:20px}
+.footnote{font-size:12px}
+footer{font-size:12px}
+.message{font-size:16px}
+.avatar{width:32px;height:32px;border-radius:50%;padding:0;background:none}
+.bot .bubble{padding-top:4px}
+.actions button{font-size:14px;border-radius:20px}
+.source{margin-top:10px;font-size:13px;color:#4f6a86;background:#f1f7fc;border:1px solid #dce8f2;border-left:3px solid #295fab;border-radius:8px;padding:8px 12px}
+.typing{display:flex;align-items:center;gap:4px;color:#6a7f96;font-size:14px}
+.typing span{width:7px;height:7px;border-radius:50%;background:#8fb3d6;animation:dot 1s infinite}
+.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
+.typing em{font-style:normal;margin-left:6px}
+@keyframes dot{0%,80%,100%{opacity:.3}40%{opacity:1}}
+@media(prefers-reduced-motion:reduce){.typing span{animation:none}}
+:root[data-theme=dark] .lang button{background:#1a3046;color:#beddf7}
+:root[data-theme=dark] .lang button[aria-pressed=true]{background:#66b9f1;color:#102235}
+:root[data-theme=dark] .lang{border-color:#35516c}
+:root[data-theme=dark] #welcome h2{color:#deebfc}
+:root[data-theme=dark] .school,:root[data-theme=dark] .side-bottom{color:#a9bdd3}
+:root[data-theme=dark] .source{background:#17283b;border-color:#354e68;border-left-color:#66b9f1;color:#a9bdd3}
+:root[data-theme=dark] #attach{background:#1a3046;border-color:#35516c}
+@media(max-width:650px){header{justify-content:space-between}#welcome h2{font-size:24px}.message,textarea{font-size:16px}#suggestions button{font-size:13px;padding:9px 12px}.compose-bottom span{font-size:11px}footer>span:last-child{font-size:11px}}
+.programs{max-width:720px}
+.programs h2{font-size:18px;margin:26px 0 12px}
+.program{border:1px solid #dce8f2;border-radius:12px;padding:14px 16px;margin-bottom:12px;background:#fff}
+.program strong{display:block;font-size:16px;margin-bottom:6px}
+.program small{display:block;font-size:13px;color:#5f7590;line-height:1.6;margin-bottom:10px}
+.program button{border:1px solid #c7d9e9;border-radius:20px;background:#f7fbff;color:#295fab;padding:7px 14px;font-size:14px}
+#info-view p{font-size:16px;line-height:1.8;max-width:720px}
+:root[data-theme=dark] .program{background:#17283b;border-color:#354e68}
+:root[data-theme=dark] .program small{color:#a9bdd3}
+:root[data-theme=dark] .program button{background:#1a3046;border-color:#35516c;color:#beddf7}
+:root[data-theme=dark] #info-view{color:#e0ebfa}
+
+nav{margin-top:34px}

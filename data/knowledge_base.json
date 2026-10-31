@@ -1,1 +1,222 @@
-{"schema_version":1,"programs":[]}
+{
+  "schema_version": 2,
+  "updated": "2026-10-31",
+  "programs": [
+    {
+      "id": "vidal-educ-assistance",
+      "name": "Educational Assistance – Office of BM Melvin Vidal",
+      "aliases": [
+        "vidal",
+        "bm vidal",
+        "bokal vidal",
+        "melvin vidal",
+        "bokal melvin",
+        "bm melvin"
+      ],
+      "type": "Government educational assistance (Provincial Board Member, Batangas)",
+      "verified": true,
+      "applicable_to_pgpc": true,
+      "source": "Office of Board Member Melvin Vidal, Batangas Provincial Capitol (expert survey response, Secretary/Staff)",
+      "last_verified": "2026-10-01",
+      "version": "1",
+      "description": "Educational assistance from the office of Batangas Provincial Board Member Melvin Vidal for college students in all year levels. PGPC students may apply.",
+      "office": {
+        "address": "Batangas Provincial Capitol",
+        "hours": "Monday–Friday, 8:00 AM–5:00 PM"
+      },
+      "requirements": [
+        "Registration form for the current semester with the “Enrolled” stamp (photocopy)",
+        "Certified true copy (CTC) of grades from the previous semester",
+        "Photocopy of school ID, back to back, with 3 signatures (the signatures must match the ID and the form)"
+      ],
+      "deadline": "No fixed application month. Applications depend on available funds or slots. Ask the office for the current schedule.",
+      "procedure": "Register with the staff of the office of Bokal Melvin Vidal, then submit your requirements at the place the office announces (it may be in Padre Garcia). When all slots are filled, the applications are forwarded to the Capitol for processing. If something is missing, the staff will contact you so you can comply.",
+      "notes": [
+        "No failing grade (5.00) in any subject.",
+        "You must not be receiving another scholarship from the Provincial Capitol.",
+        "After receiving assistance, wait 6 months before applying again.",
+        "Third- and fourth-year students are prioritized for continuing assistance.",
+        "Residency requirement: For Verification with the office."
+      ],
+      "rules_complete": true,
+      "rules": [
+        {
+          "field": "gwa",
+          "operator": "<=",
+          "threshold": 3.0,
+          "scale": "gwa_1_to_5"
+        },
+        {
+          "field": "units",
+          "operator": ">=",
+          "threshold": 18,
+          "scale": "units"
+        }
+      ]
+    },
+    {
+      "id": "mendoza-educ-assistance",
+      "name": "Bokal Marcus Mendoza Educational Assistance",
+      "aliases": [
+        "mendoza",
+        "bokal mendoza",
+        "marcus mendoza",
+        "bm mendoza",
+        "bokal marcus"
+      ],
+      "type": "Academic or merit-based assistance (Provincial Board Member, 4th District of Batangas)",
+      "verified": true,
+      "applicable_to_pgpc": true,
+      "source": "Office of Board Member Marcus Mendoza, Batangas Provincial Capitol (expert survey response)",
+      "last_verified": "2026-09-30",
+      "version": "1",
+      "description": "Educational assistance for college students in all year levels who live in the 4th District of Batangas: Ibaan, Padre Garcia, Rosario, San Jose, San Juan and Taysan.",
+      "office": {
+        "address": "Provincial Capitol of Batangas",
+        "hours": "7:00 AM–6:00 PM"
+      },
+      "requirements": [
+        "Certificate of Enrollment (1 original copy)",
+        "Registration form (1 photocopy)",
+        "Transcript of Records or grades (1 certified true copy)",
+        "School ID (1 photocopy)"
+      ],
+      "deadline": "Applications are usually in March. Submitted documents are valid for 6 months. Ask the office for the exact dates.",
+      "procedure": "Submit your requirements at the office. The exact application steps are For Verification with the office.",
+      "notes": [
+        "Applications with failing grades are usually not accepted.",
+        "You must not have another scholarship from the Provincial Capitol.",
+        "After receiving assistance, wait 1 year before applying again.",
+        "Minimum units (13): For Verification with the office."
+      ],
+      "rules_complete": true,
+      "rules": [
+        {
+          "field": "residency",
+          "operator": "in",
+          "value": [
+            "Ibaan, Batangas",
+            "Padre Garcia, Batangas",
+            "Rosario, Batangas",
+            "San Jose, Batangas",
+            "San Juan, Batangas",
+            "Taysan, Batangas"
+          ],
+          "scale": "municipality"
+        },
+        {
+          "field": "gwa",
+          "operator": "<=",
+          "threshold": 3.0,
+          "scale": "gwa_1_to_5"
+        },
+        {
+          "field": "units",
+          "operator": ">=",
+          "threshold": 13,
+          "scale": "units"
+        }
+      ]
+    },
+    {
+      "id": "sanjuan-lydo-educ-assistance",
+      "name": "San Juan LYDO Educational Cash Assistance",
+      "aliases": [
+        "san juan",
+        "lydo",
+        "san juan lydo"
+      ],
+      "type": "Local government educational assistance",
+      "verified": true,
+      "applicable_to_pgpc": false,
+      "not_applicable_reason": "This program requires enrollment in a school located in San Juan, Batangas. PGPC is in Padre Garcia, Batangas, so PGPC students are not eligible.",
+      "source": "Office of the Municipal Mayor - Local Youth Development Office, San Juan, Batangas (expert survey response)",
+      "last_verified": "2024-12-11",
+      "version": "1",
+      "description": "Cash assistance for bona fide residents of San Juan, Batangas who are currently enrolled in schools located within the municipality. Open to all college year levels; no GWA, income or unit requirement.",
+      "benefits": "Cash assistance. Claim it by presenting a valid school ID or any valid government ID; payout follows the program's process flow.",
+      "office": {
+        "address": "3rd Flr., New Municipal Bldg., Brgy. Buhaynasapa, San Juan, Batangas",
+        "hours": "Monday-Thursday, 7:00 AM-6:00 PM",
+        "contact": "043-726-5826 loc. 277; lydo.sanjuan16@gmail.com"
+      },
+      "requirements": [
+        "Duly accomplished application form (original)",
+        "2x2 ID picture (recent)",
+        "Certificate of Indigency (original)",
+        "Certificate of Residency (original)",
+        "Photocopy of valid school ID with 3 specimen signatures (wet signature)"
+      ],
+      "deadline": "Applications are usually in January and September (start of each semester). No fixed dates were given; ask the office for the current schedule.",
+      "procedure": "The LYDO coordinates with school heads, and requirements are collected in each school on a set schedule. Submit to the Office of the Municipal Mayor - Local Youth Development Office. You may apply again at the start of the next semester.",
+      "rules_complete": true,
+      "rules": [
+        {
+          "field": "residency",
+          "operator": "in",
+          "value": [
+            "San Juan, Batangas"
+          ],
+          "scale": "municipality"
+        },
+        {
+          "field": "school_municipality",
+          "operator": "in",
+          "value": [
+            "San Juan, Batangas"
+          ],
+          "scale": "municipality",
+          "label": "School location"
+        },
+        {
+          "field": "year_level",
+          "operator": ">=",
+          "threshold": 1,
+          "scale": "year_level"
+        }
+      ]
+    },
+    {
+      "id": "gvsr-educ-assistance",
+      "name": "Gov. Vilma Santos-Recto (GVSR) Scholarship / Educational Assistance",
+      "aliases": [
+        "gvsr",
+        "vilma",
+        "gov vilma",
+        "governor vilma",
+        "vilma santos"
+      ],
+      "type": "Provincial government scholarship / educational assistance",
+      "verified": false,
+      "status": "pending_permission",
+      "status_note": "Hidden until the PGPC OSA gives permission to display (interview Q34: Subject to further approval).",
+      "applicable_to_pgpc": true,
+      "source": "PGPC Office of Student Affairs, Scholarship Coordinator (in-person interview)",
+      "last_verified": "2026-10-30",
+      "version": "0",
+      "description": "Provincial scholarship / educational assistance coordinated by the PGPC Office of Student Affairs. Open to all year levels; no GWA or income limit as long as there is no failing grade (5.00).",
+      "office": {
+        "address": "Office of Student Affairs, PGPC, Brgy. Castillo, Padre Garcia, Batangas",
+        "hours": "Monday–Saturday, 8:00 AM–5:00 PM",
+        "contact": "osapgpc2024@gmail.com"
+      },
+      "requirements": [
+        "Registration form (back to back)",
+        "Student ID (back to back, 3 signatures)",
+        "Barangay Certificate of Indigency",
+        "Certificate of Grades (certified true copy)",
+        "Use A4 bond paper"
+      ],
+      "deadline": "Depends on the announcement, funds and slots. When slots are full, wait for the next batch.",
+      "procedure": "Submit your requirements to the PGPC Office of Student Affairs. Other steps: For Verification.",
+      "notes": [
+        "No failing grade (5.00) in any subject.",
+        "You may have another scholarship, but not together with the Congressman's provincial fund.",
+        "Documents are valid per semester.",
+        "Common mistakes: missing middle name or initial, signature, semester/year, or spelling."
+      ],
+      "rules_complete": false,
+      "rules": []
+    }
+  ]
+}

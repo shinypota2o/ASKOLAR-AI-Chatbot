@@ -1,11 +1,21 @@
 {
- "id":"demo-a", "name":"Demo Scholarship A", "fictional":true,
- "version":"demo-1", "rules_complete":true,
- "source":"Fictional development fixture, not a PGPC policy",
- "description":"Fictional sample for testing the Python request and response flow.",
- "requirements":null, "deadline":null, "procedure":null,
- "rules":[
-  {"field":"year","operator":">=","threshold":2,"scale":"year_level"},
-  {"field":"grade","operator":">=","threshold":85,"scale":"percentage"}
- ]
+  "id": "demo-a",
+  "name": "Demo Scholarship A",
+  "aliases": ["demo", "demo scholarship"],
+  "fictional": true,
+  "verified": false,
+  "applicable_to_pgpc": true,
+  "version": "demo-2",
+  "source": "Fictional development fixture, not a PGPC policy",
+  "last_verified": null,
+  "description": "Fictional sample for testing the conversation and rule evaluation. Not a real program.",
+  "benefits": "Fictional.",
+  "requirements": ["Fictional application form", "Fictional certificate of grades"],
+  "deadline": "Fictional: no real deadline.",
+  "procedure": "Fictional: no real application process.",
+  "rules_complete": true,
+  "rules": [
+    {"field": "year_level", "operator": ">=", "threshold": 2, "scale": "year_level"},
+    {"field": "gwa", "operator": "<=", "threshold": 2.25, "scale": "gwa_1_to_5"}
+  ]
 }
